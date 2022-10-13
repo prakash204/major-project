@@ -36,7 +36,7 @@ const invokeTransaction = async (channelName, chaincodeName, fcn, args, username
         const gateway = new Gateway();
         await gateway.connect(ccp, connectOptions);
 
-     const network = await gateway.getNetwork(channelName);
+        const network = await gateway.getNetwork(channelName);
         const contract = network.getContract(chaincodeName);
 
         // Important: Please dont set listener here, I just showed how to set it. If we are doing here, it will set on every invoke call.

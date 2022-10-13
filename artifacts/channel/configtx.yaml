@@ -62,7 +62,7 @@ Organizations:
 
         AnchorPeers:
             - Host: peer0.org2.example.com
-              Port: 9051
+              Port: 8051
     
     - &Org3
         Name: Org3MSP

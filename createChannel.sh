@@ -45,13 +45,13 @@ removeOldCrypto(){
     rm -rf ./api-1.4/fabric-client-kv-org1/*
     rm -rf ./api-2.0/org1-wallet/*
     rm -rf ./api-2.0/org2-wallet/*
+    rm -rf ./api-2.0/org3-wallet/*
 }
 
 
 joinChannel(){
     setGlobalsForPeer0Org1
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
-    
     
     setGlobalsForPeer0Org2
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block

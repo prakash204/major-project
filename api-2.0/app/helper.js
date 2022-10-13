@@ -11,7 +11,7 @@ const getCCP = async (org) => {
     let ccpPath = null;
     org == 'Org1' ? ccpPath = path.resolve(__dirname, '..', 'config', 'connection-org1.json') : null
     org == 'Org2' ? ccpPath = path.resolve(__dirname, '..', 'config', 'connection-org2.json') : null
-    org == 'Org3' ? ccpPath = path.resolve(__dirname, '..', 'config', 'connection-org3.json') : null
+    // org == 'Org3' ? ccpPath = path.resolve(__dirname, '..', 'config', 'connection-org3.json') : null
     const ccpJSON = fs.readFileSync(ccpPath, 'utf8')
     const ccp = JSON.parse(ccpJSON);
     return ccp
@@ -21,7 +21,7 @@ const getCaUrl = async (org, ccp) => {
     let caURL = null
     org == 'Org1' ? caURL = ccp.certificateAuthorities['ca.org1.example.com'].url : null
     org == 'Org2' ? caURL = ccp.certificateAuthorities['ca.org2.example.com'].url : null
-    org == 'Org3' ? caURL = ccp.certificateAuthorities['ca.org3.example.com'].url : null
+    // org == 'Org3' ? caURL = ccp.certificateAuthorities['ca.org3.example.com'].url : null
     return caURL
 
 }
@@ -30,7 +30,7 @@ const getWalletPath = async (org) => {
     let walletPath = null
     org == 'Org1' ? walletPath = path.join(process.cwd(), 'org1-wallet') : null
     org == 'Org2' ? walletPath = path.join(process.cwd(), 'org2-wallet') : null
-    org == 'Org3' ? walletPath = path.join(process.cwd(), 'org3-wallet') : null
+    // org == 'Org3' ? walletPath = path.join(process.cwd(), 'org3-wallet') : null
     return walletPath
 }
 
@@ -41,7 +41,7 @@ const getAffiliation = async (org) => {
     return org == "Org1" ? 'org1.department1' : 'org2.department1'
 }
 
-const getRegisteredUser = async (username, userOrg, isJson) => {
+const getRegisteredUser = async (username, userOrg) => {
     let ccp = await getCCP(userOrg)
 
     const caURL = await getCaUrl(userOrg, ccp)
