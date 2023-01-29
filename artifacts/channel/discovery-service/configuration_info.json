@@ -102,15 +102,15 @@
                     "endpoint": [
                             {
                                     "host": "orderer.example.com",
-                                    "port": 7050
+                                    "port": 7150
                             },
                             {
                                     "host": "orderer2.example.com",
-                                    "port": 8050
+                                    "port": 8150
                             },
                             {
                                     "host": "orderer3.example.com",
-                                    "port": 9050
+                                    "port": 9150
                             }
                     ]
             }

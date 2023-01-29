@@ -4,7 +4,7 @@ OrdererOrgs:
   # Orderer
   # ---------------------------------------------------------------------------
   - Name: Orderer
-    Domain: example.com
+    Domain: private.com
     EnableNodeOUs: true
 
     # ---------------------------------------------------------------------------
@@ -32,7 +32,7 @@ PeerOrgs:
   # Org1
   # ---------------------------------------------------------------------------
   - Name: Org1
-    Domain: org1.example.com
+    Domain: org1.private.com
     EnableNodeOUs: true
 
     Template:
@@ -46,7 +46,7 @@ PeerOrgs:
       Count: 1
 
   - Name: Org2
-    Domain: org2.example.com
+    Domain: org2.private.com
     EnableNodeOUs: true
 
     Template:
@@ -60,7 +60,7 @@ PeerOrgs:
       Count: 1
   
   - Name: Org3
-    Domain: org3.example.com
+    Domain: org3.private.com
     EnableNodeOUs: true
 
     Template:

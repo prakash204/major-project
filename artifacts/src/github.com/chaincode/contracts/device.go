@@ -43,33 +43,6 @@ func (s *DeviceContract) CreateDevice(ctx contractapi.TransactionContextInterfac
 	return ctx.GetStub().GetTxID(), ctx.GetStub().PutState(device.ID, deviceAsBytes)
 }
 
-// func (s *DeviceContract) VerifyDevice(ctx contractapi.TransactionContextInterface, deviceID string, devicePassword string) (bool, error) {
-	
-// 	if len(deviceID) == 0 {
-// 		return false, fmt.Errorf("Incorrect device ID")
-// 	}
-
-// 	deviceAsBytes, err := ctx.GetStub().GetState(deviceID)
-
-// 	if err != nil {
-// 		return false, fmt.Errorf("Failed to read from world state. %s", err.Error())
-// 	}
-
-// 	if deviceAsBytes == nil {
-// 		return false, fmt.Errorf("%s does not exist", deviceID)
-// 	}
-
-// 	device := new(Device)
-// 	_ = json.Unmarshal(deviceAsBytes, device)
-
-// 	if device.Password == devicePassword {
-// 		return true, nil
-// 	} else {
-// 		return false, nil
-// 	}
-	
-// }
-
 func (s *DeviceContract) GetHistoryForAsset(ctx contractapi.TransactionContextInterface, deviceID string) (string, error) {
 
 	resultsIterator, err := ctx.GetStub().GetHistoryForKey(deviceID)

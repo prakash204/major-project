@@ -19,9 +19,9 @@ const getCCP = async (org) => {
 
 const getCaUrl = async (org, ccp) => {
     let caURL = null
-    org == 'Org1' ? caURL = ccp.certificateAuthorities['ca.org1.example.com'].url : null
-    org == 'Org2' ? caURL = ccp.certificateAuthorities['ca.org2.example.com'].url : null
-    // org == 'Org3' ? caURL = ccp.certificateAuthorities['ca.org3.example.com'].url : null
+    org == 'Org1' ? caURL = ccp.certificateAuthorities['ca.org1.private.com'].url : null
+    org == 'Org2' ? caURL = ccp.certificateAuthorities['ca.org2.private.com'].url : null
+    // org == 'Org3' ? caURL = ccp.certificateAuthorities['ca.org3.private.com'].url : null
     return caURL
 
 }
@@ -123,9 +123,9 @@ const isUserRegistered = async (username, userOrg) => {
 
 const getCaInfo = async (org, ccp) => {
     let caInfo = null
-    org == 'Org1' ? caInfo = ccp.certificateAuthorities['ca.org1.example.com'] : null
-    org == 'Org2' ? caInfo = ccp.certificateAuthorities['ca.org2.example.com'] : null
-    org == 'Org3' ? caInfo = ccp.certificateAuthorities['ca.org3.example.com'] : null
+    org == 'Org1' ? caInfo = ccp.certificateAuthorities['ca.org1.private.com'] : null
+    org == 'Org2' ? caInfo = ccp.certificateAuthorities['ca.org2.private.com'] : null
+    org == 'Org3' ? caInfo = ccp.certificateAuthorities['ca.org3.private.com'] : null
     return caInfo
 }
 
@@ -141,7 +141,7 @@ const getOrgMSP = (org) => {
 const enrollAdmin = async (org, ccp) => {
     console.log('calling enroll Admin method')
     try {
-        const caInfo = await getCaInfo(org, ccp) //ccp.certificateAuthorities['ca.org1.example.com'];
+        const caInfo = await getCaInfo(org, ccp) //ccp.certificateAuthorities['ca.org1.private.com'];
         const caTLSCACerts = caInfo.tlsCACerts.pem;
         const ca = new FabricCAServices(caInfo.url, { trustedRoots: caTLSCACerts, verify: false }, caInfo.caName);
 

@@ -16,26 +16,26 @@ function json_ccp {
 }
 
 ORG=1
-P0PORT=7051
-CAPORT=7054
-PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/tls-localhost-7054-ca-org1-example-com.pem
-CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/msp/tlscacerts/ca.crt
+P0PORT=7151
+CAPORT=7154
+PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org1.private.com/peers/peer0.org1.private.com/tls/tlscacerts/tls-localhost-7154-ca-org1-private-com.pem
+CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org1.private.com/msp/tlscacerts/ca.crt
 
 echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM )" > connection-org1.json
 
 ORG=2
-P0PORT=9051
-CAPORT=8054
-PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/tlscacerts/tls-localhost-8054-ca-org2-example-com.pem
-CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org2.example.com/msp/tlscacerts/ca.crt
+P0PORT=9151
+CAPORT=8154
+PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org2.private.com/peers/peer0.org2.private.com/tls/tlscacerts/tls-localhost-8154-ca-org2-private-com.pem
+CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org2.private.com/msp/tlscacerts/ca.crt
 
 echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > connection-org2.json
 
 ORG=3
-P0PORT=11051
-CAPORT=10054
-PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/tlscacerts/tls-localhost-10054-ca-org3-example-com.pem
-CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org3.example.com/msp/tlscacerts/ca.crt
+P0PORT=11151
+CAPORT=10154
+PEERPEM=../../artifacts/channel/crypto-config/peerOrganizations/org3.private.com/peers/peer0.org3.private.com/tls/tlscacerts/tls-localhost-10154-ca-org3-private-com.pem
+CAPEM=../../artifacts/channel/crypto-config/peerOrganizations/org3.private.com/msp/tlscacerts/ca.crt
 
 
 echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > connection-org3.json

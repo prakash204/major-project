@@ -1,12 +1,12 @@
 version: "2"
 
 networks:
-  test:
+  private_test:
 
 services:
-  orderer.example.com:
-    container_name: orderer.example.com
-    image: hyperledger/fabric-orderer:2.1
+  orderer.private.com:
+    container_name: orderer.private.com
+    image: hyperledger/fabric-orderer:2.4
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -26,26 +26,26 @@ services:
       - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_METRICS_PROVIDER=prometheus
       - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=7150
       # - ORDERER_GENERAL_TLS_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_CLUSTER_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_AUTHENTICATION_NOEXPIRATIONCHECKS=true
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
     command: orderer
     ports:
-      - 7050:7050
-      - 8443:8443
+      - 7150:7150
+      - 8543:8443
     networks:
-      - test
+      - private_test
     volumes:
       - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls:/var/hyperledger/orderer/tls
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer.private.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer.private.com/tls:/var/hyperledger/orderer/tls
       # - /var/pavan/orderer:/var/hyperledger/production
 
-  orderer2.example.com:
-    container_name: orderer2.example.com
-    image: hyperledger/fabric-orderer:2.1
+  orderer2.private.com:
+    container_name: orderer2.private.com
+    image: hyperledger/fabric-orderer:2.4
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -65,26 +65,26 @@ services:
       - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_METRICS_PROVIDER=prometheus
       - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-      - ORDERER_GENERAL_LISTENPORT=8050
+      - ORDERER_GENERAL_LISTENPORT=8150
       # - ORDERER_GENERAL_TLS_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_CLUSTER_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_AUTHENTICATION_NOEXPIRATIONCHECKS=true
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
     command: orderer
     ports:
-      - 8050:8050
-      - 8444:8443
+      - 8150:8150
+      - 8544:8443
     networks:
-      - test
+      - private_test
     volumes:
       - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls:/var/hyperledger/orderer/tls
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer2.private.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer2.private.com/tls:/var/hyperledger/orderer/tls
       # - /var/pavan/orderer2:/var/hyperledger/production
 
-  orderer3.example.com:
-    container_name: orderer3.example.com
-    image: hyperledger/fabric-orderer:2.1
+  orderer3.private.com:
+    container_name: orderer3.private.com
+    image: hyperledger/fabric-orderer:2.4
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -104,58 +104,58 @@ services:
       - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_METRICS_PROVIDER=prometheus
       - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-      - ORDERER_GENERAL_LISTENPORT=9050
+      - ORDERER_GENERAL_LISTENPORT=9150
       # - ORDERER_GENERAL_TLS_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_CLUSTER_TLSHANDSHAKETIMESHIFT=200h
       # - ORDERER_GENERAL_AUTHENTICATION_NOEXPIRATIONCHECKS=true
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
     command: orderer
     ports:
-      - 9050:9050
-      - 8445:8443
+      - 9150:9150
+      - 8545:8443
     networks:
-      - test
+      - private_test
     volumes:
       - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
-      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls:/var/hyperledger/orderer/tls
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer3.private.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/private.com/orderers/orderer3.private.com/tls:/var/hyperledger/orderer/tls
       # - /var/pavan/orderer3:/var/hyperledger/production
 
-  couchdb0:
-    container_name: couchdb0
+  couchdb0_private:
+    container_name: couchdb0_private
     image: couchdb:3.1.1
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
     ports:
-      - 5984:5984
+      - 5994:5984
     networks:
-      - test
+      - private_test
 
-  couchdb1:
-    container_name: couchdb1
+  couchdb1_private:
+    container_name: couchdb1_private
     image: couchdb:3.1.1
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
     ports:
-      - 6984:5984
+      - 6994:5984
     networks:
-      - test
+      - private_test
 
-  couchdb2:
-    container_name: couchdb2
+  couchdb2_private:
+    container_name: couchdb2_private
     image: couchdb:3.1.1
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
     ports:
-      - 7984:5984
+      - 7994:5984
     networks:
-      - test
+      - private_test
 
-  peer0.org1.example.com:
-    container_name: peer0.org1.example.com
+  peer0.org1.private.com:
+    container_name: peer0.org1.private.com
     extends:
       file: base.yaml
       service: peer-base
@@ -164,22 +164,22 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=info
       - CORE_PEER_LOCALMSPID=Org1MSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_private_test
 
-      - CORE_PEER_ID=peer0.org1.example.com
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ID=peer0.org1.private.com
+      - CORE_PEER_ADDRESS=peer0.org1.private.com:7151
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7151
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.private.com:7152
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7152
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
+      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.private.com:8051
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.private.com:7151
 
       # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
 
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0_private:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_METRICS_PROVIDER=prometheus
@@ -189,21 +189,21 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
     depends_on:
-      - couchdb0
+      - couchdb0_private
     ports:
-      - 7051:7051
+      - 7151:7151
     volumes:
-      - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/crypto/peer/msp
-      - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
+      - ./channel/crypto-config/peerOrganizations/org1.private.com/peers/peer0.org1.private.com/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/org1.private.com/peers/peer0.org1.private.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       # - /var/pavan/peer0-org1:/var/hyperledger/production
       # - ./channel/:/etc/hyperledger/channel/
     networks:
-      - test
+      - private_test
 
 
-  peer0.org2.example.com:
-    container_name: peer0.org2.example.com
+  peer0.org2.private.com:
+    container_name: peer0.org2.private.com
     extends:
       file: base.yaml
       service: peer-base
@@ -212,19 +212,19 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=info
       - CORE_PEER_LOCALMSPID=Org2MSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_private_test
 
-      - CORE_PEER_ID=peer0.org2.example.com
-      - CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_ID=peer0.org2.private.com
+      - CORE_PEER_ADDRESS=peer0.org2.private.com:9151
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9151
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.private.com:9152
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9152
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.private.com:9151
+      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.private.com:10051
 
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1_private:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_METRICS_PROVIDER=prometheus
@@ -235,18 +235,20 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
     ports:
-      - 9051:9051
+      - 9151:9151
+    depends_on:
+      - couchdb1_private
     volumes:
-      - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/crypto/peer/msp
-      - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
+      - ./channel/crypto-config/peerOrganizations/org2.private.com/peers/peer0.org2.private.com/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/org2.private.com/peers/peer0.org2.private.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       # - /var/pavan/peer0-org2:/var/hyperledger/production
       # - ./channel/:/etc/hyperledger/channel/
     networks:
-      - test
+      - private_test
 
-  peer0.org3.example.com:
-    container_name: peer0.org3.example.com
+  peer0.org3.private.com:
+    container_name: peer0.org3.private.com
     extends:
       file: base.yaml
       service: peer-base
@@ -255,23 +257,23 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=info
       - CORE_PEER_LOCALMSPID=Org3MSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_private_test
 
-      - CORE_PEER_ID=peer0.org3.example.com
-      - CORE_PEER_ADDRESS=peer0.org3.example.com:11051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
-      # - CORE_PEER_CHAINCODEADDRESS=peer0.org3.example.com:7052
+      - CORE_PEER_ID=peer0.org3.private.com
+      - CORE_PEER_ADDRESS=peer0.org3.private.com:11151
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11151
+      # - CORE_PEER_CHAINCODEADDRESS=peer0.org3.private.com:7052
       # - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org3.example.com:12051
+      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org3.private.com:12051
 
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.example.com:11051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.private.com:11151
 
       # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
 
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2_private:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_METRICS_PROVIDER=prometheus
@@ -281,13 +283,13 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
     depends_on:
-      - couchdb2
+      - couchdb2_private
     ports:
-      - 11051:11051
+      - 11151:11151
     volumes:
-      - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/crypto/peer/msp
-      - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/crypto/peer/tls
+      - ./channel/crypto-config/peerOrganizations/org3.private.com/peers/peer0.org3.private.com/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/org3.private.com/peers/peer0.org3.private.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       # - /var/pavan/peer0-org3:/var/hyperledger/production
     networks:
-      - test
+      - private_test

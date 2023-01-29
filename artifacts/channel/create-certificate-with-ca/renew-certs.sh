@@ -6,22 +6,22 @@ createcertificatesForOrg1() {
   export FABRIC_CA_CLIENT_HOME=${PWD}/../new-certs/peerOrganizations/org1.example.com/
 
    
-  fabric-ca-client enroll -u https://admin:adminpw@localhost:7054 --caname ca.org1.example.com --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
+  fabric-ca-client enroll -u https://admin:adminpw@localhost:7154 --caname ca.org1.example.com --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
    
 
   echo 'NodeOUs:
   Enable: true
   ClientOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: client
   PeerOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: peer
   AdminOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: admin
   OrdererOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: orderer' >${PWD}/../new-certs/peerOrganizations/org1.example.com/msp/config.yaml
 
   # -----------------------------------------------------------------------------------
@@ -31,14 +31,14 @@ createcertificatesForOrg1() {
   echo
   echo "## Generate the peer0 msp"
   echo
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca.org1.example.com -M ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp --csr.hosts peer0.org1.example.com --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7154 --caname ca.org1.example.com -M ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp --csr.hosts peer0.org1.example.com --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
 
   cp ${PWD}/../new-certs/peerOrganizations/org1.example.com/msp/config.yaml ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/config.yaml
 
   echo
   echo "## Generate the peer0-tls certificates"
   echo
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca.org1.example.com -M ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls --enrollment.profile tls --csr.hosts peer0.org1.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7154 --caname ca.org1.example.com -M ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls --enrollment.profile tls --csr.hosts peer0.org1.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org1/tls-cert.pem
 
   cp ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/* ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
   cp ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/signcerts/* ${PWD}/../new-certs/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
@@ -66,21 +66,21 @@ createCertificatesForOrg2() {
   export FABRIC_CA_CLIENT_HOME=${PWD}/../new-certs/peerOrganizations/org2.example.com/
 
    
-  fabric-ca-client enroll -u https://admin:adminpw@localhost:8054 --caname ca.org2.example.com --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
+  fabric-ca-client enroll -u https://admin:adminpw@localhost:8154 --caname ca.org2.example.com --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
    
     echo 'NodeOUs:
   Enable: true
   ClientOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: client
   PeerOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: peer
   AdminOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: admin
   OrdererOUIdentifier:
-    Certificate: cacerts/localhost-7054-ca-org1-example-com.pem
+    Certificate: cacerts/localhost-7154-ca-org1-example-com.pem
     OrganizationalUnitIdentifier: orderer' >${PWD}/../new-certs/peerOrganizations/org2.example.com/msp/config.yaml
 
   mkdir -p ../new-certs/peerOrganizations/org2.example.com/peers
@@ -92,7 +92,7 @@ createCertificatesForOrg2() {
   echo "## Generate the peer0 msp"
   echo
    
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8054 --caname ca.org2.example.com -M ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp --csr.hosts peer0.org2.example.com --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8154 --caname ca.org2.example.com -M ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp --csr.hosts peer0.org2.example.com --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/peerOrganizations/org2.example.com/msp/config.yaml ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/config.yaml
@@ -101,7 +101,7 @@ createCertificatesForOrg2() {
   echo "## Generate the peer0-tls certificates"
   echo
    
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8054 --caname ca.org2.example.com -M ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls --enrollment.profile tls --csr.hosts peer0.org2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8154 --caname ca.org2.example.com -M ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls --enrollment.profile tls --csr.hosts peer0.org2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org2/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/tlscacerts/* ${PWD}/../new-certs/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
@@ -128,22 +128,22 @@ createCertificatesForOrg3() {
   mkdir -p ../new-certs/peerOrganizations/org3.example.com/
 
   export FABRIC_CA_CLIENT_HOME=${PWD}/../new-certs/peerOrganizations/org3.example.com/
-  fabric-ca-client enroll -u https://admin:adminpw@localhost:10054 --caname ca.org3.example.com --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
+  fabric-ca-client enroll -u https://admin:adminpw@localhost:10154 --caname ca.org3.example.com --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
 
 
   echo 'NodeOUs:
   Enable: true
   ClientOUIdentifier:
-    Certificate: cacerts/localhost-10054-ca-org3-example-com.pem
+    Certificate: cacerts/localhost-10154-ca-org3-example-com.pem
     OrganizationalUnitIdentifier: client
   PeerOUIdentifier:
-    Certificate: cacerts/localhost-10054-ca-org3-example-com.pem
+    Certificate: cacerts/localhost-10154-ca-org3-example-com.pem
     OrganizationalUnitIdentifier: peer
   AdminOUIdentifier:
-    Certificate: cacerts/localhost-10054-ca-org3-example-com.pem
+    Certificate: cacerts/localhost-10154-ca-org3-example-com.pem
     OrganizationalUnitIdentifier: admin
   OrdererOUIdentifier:
-    Certificate: cacerts/localhost-10054-ca-org3-example-com.pem
+    Certificate: cacerts/localhost-10154-ca-org3-example-com.pem
     OrganizationalUnitIdentifier: orderer' >${PWD}/../new-certs/peerOrganizations/org3.example.com/msp/config.yaml
    
 
@@ -156,7 +156,7 @@ createCertificatesForOrg3() {
   echo "## Generate the peer0 msp"
   echo
    
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:10054 --caname ca.org3.example.com -M ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp --csr.hosts peer0.org3.example.com --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:10154 --caname ca.org3.example.com -M ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp --csr.hosts peer0.org3.example.com --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/peerOrganizations/org3.example.com/msp/config.yaml ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp/config.yaml
@@ -165,7 +165,7 @@ createCertificatesForOrg3() {
   echo "## Generate the peer0-tls certificates"
   echo
    
-  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:10054 --caname ca.org3.example.com -M ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls --enrollment.profile tls --csr.hosts peer0.org3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
+  fabric-ca-client enroll -u https://peer0:peer0pw@localhost:10154 --caname ca.org3.example.com -M ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls --enrollment.profile tls --csr.hosts peer0.org3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/org3/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/tlscacerts/* ${PWD}/../new-certs/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
@@ -192,21 +192,21 @@ createCretificatesForOrderer() {
   export FABRIC_CA_CLIENT_HOME=${PWD}/../new-certs/ordererOrganizations/example.com
 
    
-  fabric-ca-client enroll -u https://admin:adminpw@localhost:9054 --caname ca-orderer --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://admin:adminpw@localhost:9154 --caname ca-orderer --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
 
  echo 'NodeOUs:
   Enable: true
   ClientOUIdentifier:
-    Certificate: cacerts/localhost-9054-ca-orderer.pem
+    Certificate: cacerts/localhost-9154-ca-orderer.pem
     OrganizationalUnitIdentifier: client
   PeerOUIdentifier:
-    Certificate: cacerts/localhost-9054-ca-orderer.pem
+    Certificate: cacerts/localhost-9154-ca-orderer.pem
     OrganizationalUnitIdentifier: peer
   AdminOUIdentifier:
-    Certificate: cacerts/localhost-9054-ca-orderer.pem
+    Certificate: cacerts/localhost-9154-ca-orderer.pem
     OrganizationalUnitIdentifier: admin
   OrdererOUIdentifier:
-    Certificate: cacerts/localhost-9054-ca-orderer.pem
+    Certificate: cacerts/localhost-9154-ca-orderer.pem
     OrganizationalUnitIdentifier: orderer' >${PWD}/../new-certs/ordererOrganizations/example.com/msp/config.yaml
 
   mkdir -p ../new-certs/ordererOrganizations/example.com/orderers
@@ -221,7 +221,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer msp"
   echo
    
-  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/msp --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/msp --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/msp/config.yaml ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/msp/config.yaml
@@ -230,7 +230,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer-tls certificates"
   echo
    
-  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/tls --enrollment.profile tls --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/tls --enrollment.profile tls --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/tls/tlscacerts/* ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt
@@ -252,7 +252,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer msp"
   echo
    
-  fabric-ca-client enroll -u https://orderer2:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/msp --csr.hosts orderer2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer2:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/msp --csr.hosts orderer2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/msp/config.yaml ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/config.yaml
@@ -261,7 +261,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer-tls certificates"
   echo
    
-  fabric-ca-client enroll -u https://orderer2:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/tls --enrollment.profile tls --csr.hosts orderer2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer2:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/tls --enrollment.profile tls --csr.hosts orderer2.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/tlscacerts/* ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/ca.crt
@@ -280,7 +280,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer msp"
   echo
    
-  fabric-ca-client enroll -u https://orderer3:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/msp --csr.hosts orderer3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer3:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/msp --csr.hosts orderer3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/msp/config.yaml ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/config.yaml
@@ -289,7 +289,7 @@ createCretificatesForOrderer() {
   echo "## Generate the orderer-tls certificates"
   echo
    
-  fabric-ca-client enroll -u https://orderer3:ordererpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/tls --enrollment.profile tls --csr.hosts orderer3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://orderer3:ordererpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/tls --enrollment.profile tls --csr.hosts orderer3.example.com --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/tlscacerts/* ${PWD}/../new-certs/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/ca.crt
@@ -308,7 +308,7 @@ createCretificatesForOrderer() {
   echo "## Generate the admin msp"
   echo
    
-  fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9054 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/users/Admin@example.com/msp --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
+  fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9154 --caname ca-orderer -M ${PWD}/../new-certs/ordererOrganizations/example.com/users/Admin@example.com/msp --tls.certfiles ${PWD}/fabric-ca/ordererOrg/tls-cert.pem
    
 
   cp ${PWD}/../new-certs/ordererOrganizations/example.com/msp/config.yaml ${PWD}/../new-certs/ordererOrganizations/example.com/users/Admin@example.com/msp/config.yaml
